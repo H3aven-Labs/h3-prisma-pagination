@@ -5,7 +5,7 @@
     "strict": true,
     "moduleResolution": "node",
     "declaration": true,
-    "outDir": "dist",
+    "outDir": "lib",
     "rootDir": "src"
   },
   "include": [

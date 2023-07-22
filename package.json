@@ -1,16 +1,19 @@
 {
-  "name": "prisma-pagination",
-  "version": "0.2.2",
+  "name": "@h3aven-labs/h3-prisma-pagination",
+  "version": "0.1.0",
   "description": "",
   "source": "src/index.ts",
-  "main": "dist/index.js",
-  "module": "dist/index.module.js",
-  "types": "dist/index.d.ts",
+  "main": "lib/index.js",
+  "module": "lib/index.module.js",
+  "types": "lib/index.d.ts",
   "scripts": {
     "build": "npm run clean && microbundle --format esm,cjs",
-    "clean": "rm -rf dist",
+    "clean": "rm -rf lib",
     "prepublishOnly": "npm run build",
     "watch": "microbundle watch --format esm,cjs"
+  },
+  "engines": {
+    "node": "^16.18.0"
   },
   "keywords": [
     "prisma",
