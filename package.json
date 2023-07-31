@@ -6,6 +6,10 @@
   "main": "lib/index.js",
   "module": "lib/index.module.js",
   "types": "lib/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/H3aven-Labs/h3-prisma-pagination.git"
+  },
   "scripts": {
     "build": "npm run clean && microbundle --format esm,cjs",
     "clean": "rm -rf lib",
@@ -20,10 +24,6 @@
     "pagination",
     "node"
   ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/enkot/prisma-pagination.git"
-  },
   "bugs": {
     "url": "https://github.com/enkot/prisma-pagination/issues"
   },
