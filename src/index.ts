@@ -1,24 +1,30 @@
-export interface PaginatedResult<T> {
-  data: T[]
-  meta: {
-    total: number
-    lastPage: number
-    currentPage: number
-    perPage: number
-    prev: number | null
-    next: number | null
-  }
+export interface PaginatedResultMeta {
+  total: number;
+  lastPage: number;
+  currentPage: number;
+  perPage: number;
+  prev: number | null;
+  next: number | null;
 }
 
-export type PaginateOptions = { page?: number | string, perPage?: number | string }
-export type PaginateFunction = <T, K>(model: any, args?: K, options?: PaginateOptions) => Promise<PaginatedResult<T>>
+export interface PaginatedResult<T> {
+  data: T[];
+  meta: PaginatedResultMeta;
+}
+
+export type PaginateOptions = { page?: number | string; perPage?: number | string };
+export type PaginateFunction = <T, K>(
+  model: any,
+  args?: K,
+  options?: PaginateOptions,
+) => Promise<PaginatedResult<T>>;
 
 export const createPaginator = (defaultOptions: PaginateOptions): PaginateFunction => {
   return async (model, args: any = { where: undefined }, options) => {
-    const page = Number(options?.page || defaultOptions?.page) || 1
-    const perPage = Number(options?.perPage || defaultOptions?.perPage) || 10
-    
-    const skip = page > 0 ? perPage * (page - 1) : 0
+    const page = Number(options?.page || defaultOptions?.page) || 1;
+    const perPage = Number(options?.perPage || defaultOptions?.perPage) || 10;
+
+    const skip = page > 0 ? perPage * (page - 1) : 0;
     const [total, data] = await Promise.all([
       model.count({ where: args.where }),
       model.findMany({
@@ -26,8 +32,8 @@ export const createPaginator = (defaultOptions: PaginateOptions): PaginateFuncti
         take: perPage,
         skip,
       }),
-    ])
-    const lastPage = Math.ceil(total / perPage)
+    ]);
+    const lastPage = Math.ceil(total / perPage);
 
     return {
       data,
@@ -39,6 +45,6 @@ export const createPaginator = (defaultOptions: PaginateOptions): PaginateFuncti
         prev: page > 1 ? page - 1 : null,
         next: page < lastPage ? page + 1 : null,
       },
-    }
-  }
-}
+    };
+  };
+};
