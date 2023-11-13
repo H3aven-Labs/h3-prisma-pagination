@@ -1,6 +1,6 @@
 {
   "name": "@h3aven-labs/h3-prisma-pagination",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "",
   "source": "src/index.ts",
   "main": "lib/index.js",
@@ -17,7 +17,7 @@
     "watch": "microbundle watch --format esm,cjs"
   },
   "engines": {
-    "node": "^16.18.0"
+    "node": "^16.18.0 || ^18.18.2"
   },
   "keywords": [
     "prisma",
